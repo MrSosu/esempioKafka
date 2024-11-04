@@ -17,11 +17,11 @@ public class KafkaJsonProducer {
     private KafkaTemplate<String, Studente> kafkaTemplate;
 
     public ResponseEntity<?> sendStudente(Studente studente) {
-        Message<Studente> message = MessageBuilder
+        /*Message<Studente> message = MessageBuilder
                 .withPayload(studente)
                 .setHeader(KafkaHeaders.TOPIC, "sosu-topic")
-                .build();
-        kafkaTemplate.send(message);
+                .build(); */
+        kafkaTemplate.send("sosu-topic", studente);
         return new ResponseEntity<>("Studente inviato con successo", HttpStatus.OK);
     }
 
